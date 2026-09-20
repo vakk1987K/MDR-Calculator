@@ -16,6 +16,7 @@ import { LanguageCode, SavedCalculation } from './types';
 import { translations, TranslationSchema } from './i18n/translations';
 import { TopLanguageBar } from './components/TopLanguageBar';
 import { LanguageGlossaryModal } from './components/LanguageGlossaryModal';
+import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { Header } from './components/Header';
 import { SingleBillCalculator } from './components/SingleBillCalculator';
 import { MonthlySimulator } from './components/MonthlySimulator';
@@ -35,6 +36,9 @@ export default function App() {
 
   // Modal for Language selection, audio test and merchant glossary
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState<boolean>(false);
+
+  // Modal for Privacy Policy
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
 
   // Dual-language mode (showing English banking acronyms alongside vernacular)
   const [dualMode, setDualMode] = useState<boolean>(() => {
@@ -150,6 +154,12 @@ export default function App() {
         onToggleDualMode={handleToggleDualMode}
         autoVoice={autoVoice}
         onToggleAutoVoice={handleToggleAutoVoice}
+      />
+
+      {/* Privacy Policy Dialog */}
+      <PrivacyPolicyModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
       />
 
       {/* Navigation Tabs Bar */}
@@ -272,12 +282,21 @@ export default function App() {
           <p className="max-w-xl mx-auto text-slate-400">
             Calculations strictly reflect Section 10A of the Payment and Settlement Systems Act, 2007, MeitY directives, and official NPCI interchange guidelines.
           </p>
-          <div className="pt-1 flex items-center justify-center gap-4 text-[11px] text-slate-400">
+          <div className="pt-1 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] text-slate-400">
             <span>✓ Works 100% Offline</span>
             <span>•</span>
             <span>✓ 18% GST Compliance</span>
             <span>•</span>
             <span>✓ 6 Indian Languages</span>
+            <span>•</span>
+            <button
+              id="footer-privacy-policy-btn"
+              type="button"
+              onClick={() => setIsPrivacyModalOpen(true)}
+              className="text-emerald-700 hover:text-emerald-900 font-bold underline underline-offset-2 transition"
+            >
+              Privacy Policy
+            </button>
           </div>
         </div>
       </footer>
