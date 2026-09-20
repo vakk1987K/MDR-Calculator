@@ -89,14 +89,25 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
           <div className="p-4 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-md">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 block">
-                Export For Your GitHub Repository
+                Official Policy Repository (Verified)
               </span>
               <p className="text-xs text-slate-300 mt-0.5">
-                Download formatted Word document or copy raw Markdown for your new repo.
+                Publicly hosted on GitHub for Google Play compliance and merchant auditing.
               </p>
             </div>
 
             <div className="flex items-center gap-2 shrink-0 w-full sm:w-auto">
+              <a
+                id="btn-view-github-policy"
+                href="https://github.com/vakk1987K/APP-Policy-documents/blob/main/MDR%20PRIVACY_POLICY.docx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 font-bold text-xs transition active:scale-95"
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-slate-300" />
+                <span>View on GitHub</span>
+              </a>
+
               <a
                 id="btn-download-docx-privacy"
                 href="/PRIVACY_POLICY.docx"
@@ -111,10 +122,10 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
                 id="btn-copy-markdown-privacy"
                 type="button"
                 onClick={handleCopyMarkdown}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs transition active:scale-95"
+                title="Copy raw markdown"
+                className="inline-flex items-center justify-center p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs transition active:scale-95"
               >
                 {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? 'Copied!' : 'Copy .md'}</span>
               </button>
             </div>
           </div>
@@ -195,6 +206,19 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
             </p>
             <p className="text-slate-500 pt-1 border-t border-slate-200">
               Last Updated: September 20, 2026 • Contact: kvakk1988@gmail.com
+            </p>
+          </div>
+
+          {/* Google Play Non-Government Disclaimer */}
+          <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs space-y-1.5 text-amber-950">
+            <h4 className="font-bold text-amber-900 flex items-center gap-1.5">
+              <span>⚠️ Important Play Store & Regulatory Disclaimer</span>
+            </h4>
+            <p className="text-amber-900/90 leading-relaxed text-[11px]">
+              This application is an independent educational and estimation calculator. It is <strong>NOT</strong> an official app of, authorized by, or affiliated with the National Payments Corporation of India (NPCI), the Reserve Bank of India (RBI), or any Government ministry.
+            </p>
+            <p className="text-amber-900/90 leading-relaxed text-[11px]">
+              This utility does not provide loans, process payment transactions, accept deposits, or connect to banking APIs.
             </p>
           </div>
 

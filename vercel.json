@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/((?!assets/|privacy\\.html|PRIVACY_POLICY\\..*|favicon\\.ico|manifest\\.webmanifest|sw\\.js|registerSW\\.js|.*\\.png|.*\\.svg).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

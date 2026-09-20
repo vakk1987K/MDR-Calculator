@@ -38,7 +38,24 @@ export default function App() {
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState<boolean>(false);
 
   // Modal for Privacy Policy
-  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      const search = window.location.search.toLowerCase();
+      return hash === '#privacy' || search.includes('privacy=true');
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash.toLowerCase() === '#privacy') {
+        setIsPrivacyModalOpen(true);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   // Dual-language mode (showing English banking acronyms alongside vernacular)
   const [dualMode, setDualMode] = useState<boolean>(() => {
@@ -283,6 +300,9 @@ export default function App() {
           <p className="max-w-xl mx-auto text-slate-400">
             Calculations strictly reflect Section 10A of the Payment and Settlement Systems Act, 2007, MeitY directives, and official NPCI interchange guidelines.
           </p>
+          <p className="max-w-2xl mx-auto text-[10px] text-slate-400 leading-normal">
+            Disclaimer: Independent calculation and simulation tool for merchant transparency. Not affiliated with, endorsed by, or representing NPCI, RBI, or any government authority. Does not process payments, accept deposits, or offer credit.
+          </p>
           <div className="pt-1 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] text-slate-400">
             <span>✓ Works 100% Offline</span>
             <span>•</span>
@@ -296,8 +316,19 @@ export default function App() {
               onClick={() => setIsPrivacyModalOpen(true)}
               className="text-emerald-700 hover:text-emerald-900 font-bold underline underline-offset-2 transition"
             >
-              Privacy Policy
+              Privacy Policy (Modal)
             </button>
+            <span>•</span>
+            <a
+              id="footer-privacy-html-link"
+              href="/privacy.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-slate-700 font-semibold underline underline-offset-2 transition"
+              title="Open standalone HTML privacy document"
+            >
+              Privacy URL (/privacy.html)
+            </a>
           </div>
         </div>
       </footer>
