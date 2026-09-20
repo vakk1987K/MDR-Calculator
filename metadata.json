@@ -1,0 +1,6 @@
+{
+  "name": "UPI Merchant MDR Calculator",
+  "description": "Offline-ready Progressive Web App for merchants to calculate UPI MDR, interchange fees, GST deductions, and net payout across payment modes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
