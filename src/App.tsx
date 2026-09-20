@@ -131,6 +131,7 @@ export default function App() {
         onOpenGuide={() => setIsLanguageModalOpen(true)}
         dualMode={dualMode}
         onToggleDualMode={handleToggleDualMode}
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
       />
 
       {/* Top Header */}

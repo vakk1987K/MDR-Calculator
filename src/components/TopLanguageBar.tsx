@@ -10,7 +10,8 @@ import {
   HelpCircle, 
   Sparkles, 
   Check, 
-  Layers 
+  Layers,
+  ShieldCheck
 } from 'lucide-react';
 import { LanguageCode } from '../types';
 import { SUPPORTED_LANGUAGES, TranslationSchema } from '../i18n/translations';
@@ -23,6 +24,7 @@ interface TopLanguageBarProps {
   onOpenGuide: () => void;
   dualMode: boolean;
   onToggleDualMode: () => void;
+  onOpenPrivacy?: () => void;
 }
 
 export const TopLanguageBar: React.FC<TopLanguageBarProps> = ({
@@ -32,6 +34,7 @@ export const TopLanguageBar: React.FC<TopLanguageBarProps> = ({
   onOpenGuide,
   dualMode,
   onToggleDualMode,
+  onOpenPrivacy,
 }) => {
   const [activeSpeech, setActiveSpeech] = useState<boolean>(false);
 
@@ -139,6 +142,20 @@ export const TopLanguageBar: React.FC<TopLanguageBarProps> = ({
             <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
             <span>{t.topLanguageHelp}</span>
           </button>
+
+          {/* Privacy Policy Quick Modal Trigger */}
+          {onOpenPrivacy && (
+            <button
+              id="top-privacy-btn"
+              type="button"
+              onClick={onOpenPrivacy}
+              title="View Privacy Policy & Download .docx"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-950/70 hover:bg-emerald-900 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 transition active:scale-95"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Privacy</span>
+            </button>
+          )}
 
         </div>
 
